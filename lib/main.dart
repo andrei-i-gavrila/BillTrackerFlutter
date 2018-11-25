@@ -10,7 +10,7 @@ class BillTracker extends StatelessWidget {
         future: BillAppDatabase().open(),
         builder: (context, asyncSnapshot) {
           if (asyncSnapshot.connectionState == ConnectionState.done) {
-            return new MaterialApp(title: 'Bill tracker', theme: ThemeData.dark(), home: BillListPage(asyncSnapshot.data.billRepository));
+            return new MaterialApp(title: 'Bill tracker', theme: ThemeData.light(), home: BillListPage(asyncSnapshot.data.billRepository));
           }
           return Center(child: CircularProgressIndicator());
         });

@@ -20,27 +20,33 @@ class BillAddPageState extends State<BillAddPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(child: TextField(controller: _nameController)),
-        Expanded(child: TextField(controller: _priceController)),
+    return Scaffold(
+        body: Column(children: [
+      Row(children: [Expanded(child: TextField(controller: _nameController))]),
+      Row(children: [Expanded(child: TextField(controller: _priceController))]),
+      Row(children: [
         Expanded(
             child: DropdownButton(
+          value: _currency,
           items: [DropdownMenuItem(child: Text("RON"), value: "RON"), DropdownMenuItem(child: Text("EUR"), value: "EUR")],
           onChanged: (String value) {
-            _currency = value;
+            setState(() {
+              _currency = value;
+            });
           },
-        )),
-        Expanded(child: TextField(controller: _paymentDayController)),
+        ))
+      ]),
+      Row(children: [Expanded(child: TextField(controller: _paymentDayController))]),
+      Row(children: [
         Expanded(
             child: RaisedButton(
                 child: Text("Save"),
                 onPressed: () {
-                  widget._billRepository.save(_nameController.value.toString(), num.parse(_priceController.value.toString()), _currency, int.parse(_paymentDayController.value.toString())).then((_) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {}));
+                  widget._billRepository.save(_nameController.value.text, num.parse(_priceController.value.text), _currency, int.parse(_paymentDayController.value.text)).then((_) {
+                    Navigator.pop(context);
                   });
                 }))
-      ],
-    );
+      ])
+    ]));
   }
 }
