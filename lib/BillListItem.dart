@@ -9,7 +9,10 @@ class BillListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Row(
-      children: <Widget>[],
+      children: <Widget>[
+        Expanded(child: Text(_bill.name, textAlign: TextAlign.left)),
+        Expanded(child: Text(_bill.price.toStringAsFixed(1) + _bill.currency, textAlign: TextAlign.right))
+      ],
     );
   }
 }

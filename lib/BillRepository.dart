@@ -7,10 +7,10 @@ class BillRepository {
   BillRepository(this._database);
 
   Future<List<Bill>> getBills() async {
-    return await _database.query(Bill.tableName).then((List<Map<String, dynamic>> maps) async {
+    return await _database.query(Bill.tableName).then((maps) async {
       return maps.map((Map<String, dynamic> map) {
         return Bill.fromMap(map);
-      });
+      }).toList();
     });
   }
 

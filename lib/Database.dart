@@ -11,7 +11,7 @@ class BillAppDatabase {
 
   BillAppDatabase();
 
-  Future open() async {
+  Future<BillAppDatabase> open() async {
     _database = await openDatabase(dbPath, version: databaseVersion, onCreate: (
       Database db,
       int version,
@@ -21,11 +21,12 @@ class BillAppDatabase {
              ${Bill.columnId} integer primary key autoincrement,
              ${Bill.columnName} text not null,
              ${Bill.columnPrice} real not null,
-             ${Bill.columnCurrency} text not null
+             ${Bill.columnCurrency} text not null,
              ${Bill.columnPaymentDay} integer not null      
           )''');
     });
 
     billRepository = BillRepository(_database);
+    return this;
   }
 }
