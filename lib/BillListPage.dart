@@ -1,5 +1,6 @@
 import 'package:bill_tracker/Bill.dart';
 import 'package:bill_tracker/BillAddPage.dart';
+import 'package:bill_tracker/BillEditPage.dart';
 import 'package:bill_tracker/BillListItem.dart';
 import 'package:bill_tracker/BillRepository.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +50,18 @@ class BillListPageState extends State<BillListPage> {
     return ListView.builder(
       itemCount: bills.length,
       itemBuilder: (context, index) {
-        return BillListItem(bills[index]);
+        return GestureDetector(
+          child: BillListItem(bills[index]),
+          onTap: () => _navigateToEditPage(bills[index]),
+        );
       },
+    );
+  }
+
+  _navigateToEditPage(Bill bill) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BillEditPage(widget._billRepository, bill)),
     );
   }
 }
