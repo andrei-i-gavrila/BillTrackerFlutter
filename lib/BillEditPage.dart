@@ -27,20 +27,21 @@ class BillEditPageState extends State<BillEditPage> {
     _paymentDayController.text = widget._bill.paymentDay.toString();
     _currency = widget._bill.currency;
     return Scaffold(
+        appBar: AppBar(title: Text("Edit bill")),
         body: Column(children: [
           Row(children: [Expanded(child: TextField(controller: _nameController))]),
-          Row(children: [Expanded(child: TextField(controller: _priceController))]),
+          Row(children: []),
           Row(children: [
-            Expanded(
-                child: DropdownButton(
-                  value: _currency,
-                  items: [DropdownMenuItem(child: Text("RON"), value: "RON"), DropdownMenuItem(child: Text("EUR"), value: "EUR")],
-                  onChanged: (String value) {
-                    setState(() {
-                      _currency = value;
-                    });
-                  },
-                ))
+            Expanded(child: TextField(controller: _priceController)),
+            DropdownButton(
+              value: _currency,
+              items: [DropdownMenuItem(child: Text("RON"), value: "RON"), DropdownMenuItem(child: Text("EUR"), value: "EUR")],
+              onChanged: (String value) {
+                setState(() {
+                  _currency = value;
+                });
+              },
+            )
           ]),
           Row(children: [Expanded(child: TextField(controller: _paymentDayController))]),
           Row(children: [

@@ -19,6 +19,7 @@ class BillListPage extends StatefulWidget {
 class BillListPageState extends State<BillListPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(title: Text("Bill list")),
       body: FutureBuilder(
         future: widget._billRepository.getBills(),
         builder: (context, AsyncSnapshot<List<Bill>> asyncSnapshot) {
