@@ -22,7 +22,9 @@ class BillAppDatabase {
              ${Bill.columnName} text not null,
              ${Bill.columnPrice} real not null,
              ${Bill.columnCurrency} text not null,
-             ${Bill.columnPaymentDay} integer not null      
+             ${Bill.columnPaymentDay} integer not null,
+             ${Bill.columnSynced} integer default 0,
+             ${Bill.columnDeleted} integer default 0
           )''');
     });
 
